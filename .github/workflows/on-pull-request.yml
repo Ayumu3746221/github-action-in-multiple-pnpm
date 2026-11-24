@@ -1,0 +1,31 @@
+name: On pull request
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+  workflow_dispatch:
+
+permissions: {}
+
+defaults:
+  run:
+    working-directory: ./
+
+concurrency:
+  group: ${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    if: github.event.pull_request.draft == false
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
