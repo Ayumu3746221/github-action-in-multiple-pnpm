@@ -9,7 +9,8 @@ on:
       - ready_for_review
   workflow_dispatch:
 
-permissions: {}
+permissions:
+  contents: read
 
 defaults:
   run:
@@ -20,12 +21,11 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  checkout:
+  tests:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     if: github.event.pull_request.draft == false
     steps:
       - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
+      - uses: $/.github/actions/setup
