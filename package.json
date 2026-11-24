@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "fmt": "oxfmt",
-    "lint": "oxfmt --check"
+    "fmt:check": "oxfmt --check"
   },
   "devDependencies": {
     "oxfmt": "^0.79.0"
