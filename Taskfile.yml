@@ -62,3 +62,16 @@ tasks:
     dir: app
     cmds:
       - pnpm test
+
+  # The cache server listens on the Mac's loopback only; containers reach it
+  # through Docker Desktop's host.docker.internal. Extra args: `task act -- -j tests`
+  act:
+    desc: Run the pull_request workflow locally with act
+    cmds:
+      - >-
+        act pull_request
+        -P ubuntu-latest=catthehacker/ubuntu:act-latest
+        --cache-server-addr 127.0.0.1
+        --cache-server-port 34567
+        --cache-server-external-url http://host.docker.internal:34567
+        {{.CLI_ARGS}}
