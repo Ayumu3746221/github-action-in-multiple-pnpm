@@ -1,4 +1,13 @@
 name: "Setup tools"
+inputs:
+  save-cache:
+    description: |
+      Whether to save the pnpm store cache at the end of the job. Off by
+      default: pull request caches are scoped to refs/pull/N/merge and cannot
+      be restored by other PRs, so only the push-to-main workflow saves the
+      cache every PR restores from.
+    required: false
+    default: "false"
 runs:
   using: "composite"
   steps:
@@ -10,6 +19,7 @@ runs:
       uses: pnpm/setup@731dfb6463bbd11c11fd0ee11fe00ed0e36d48a1 # v3.2.0
       with:
         cache: true
+        save-cache: ${{ inputs.save-cache }}
         cache-dependency-path: |
           pnpm-lock.yaml
           app/pnpm-lock.yaml

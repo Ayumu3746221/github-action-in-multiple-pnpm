@@ -25,6 +25,8 @@ jobs:
         with:
           persist-credentials: false
       - uses: $/.github/actions/setup
+        with:
+          save-cache: true
       - run: task build
   format:
     name: Check formatting
@@ -43,6 +45,8 @@ jobs:
         with:
           persist-credentials: false
       - uses: $/.github/actions/setup
+        with:
+          save-cache: true
       - run: task lint
   test:
     name: Testing
@@ -52,4 +56,6 @@ jobs:
         with:
           persist-credentials: false
       - uses: $/.github/actions/setup
+        with:
+          save-cache: true
       - run: task test
