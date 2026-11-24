@@ -1,0 +1,29 @@
+{
+  "name": "gha-in-multiple-pnpm",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "fmt": "oxfmt",
+    "lint": "oxfmt --check"
+  },
+  "devDependencies": {
+    "oxfmt": "^0.79.0"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.23.0",
+      "onFail": "download"
+    },
+    "runtime": {
+      "name": "node",
+      "version": ">=26",
+      "onFail": "error"
+    }
+  },
+  "engines": {
+    "node": ">=26"
+  },
+  "packageManager": "pnpm@12.23.0"
+}

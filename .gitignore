@@ -1,0 +1,44 @@
+# Patterns without a leading "/" apply at every depth (root and app/ alike).
+
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+out/
+*.tsbuildinfo
+
+# Test / coverage
+coverage/
+.vitest/
+junit.xml
+
+# Caches
+.cache/
+.eslintcache
+
+# Logs
+*.log
+logs/
+
+# Environment variables (keep templates such as .env.example)
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors / IDEs
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*~
+
+# Claude Code local settings
+.claude/settings.local.json
