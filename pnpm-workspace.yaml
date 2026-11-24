@@ -1,0 +1,26 @@
+# Install only the native binaries for the platforms we actually run on:
+# local macOS (Apple Silicon) and GitHub Actions Ubuntu runners (x64: ubuntu-latest, arm64: ubuntu-*-arm).
+supportedArchitectures:
+  os:
+    - darwin
+    - linux
+  cpu:
+    - arm64
+    - x64
+  libc:
+    - glibc
+
+# Ignore versions published less than 7 days ago (minutes: 60 * 24 * 7).
+minimumReleaseAge: 10080
+
+# Fail if a package's trust evidence (provenance / trusted publisher) got weaker than in earlier versions.
+trustPolicy: no-downgrade
+
+# Transitive dependencies must come from the registry (no git / tarball URLs).
+blockExoticSubdeps: true
+
+# No dependency is allowed to run install scripts (allowlist; add `<pkg>: true` to permit one).
+allowBuilds: {}
+
+# Fail the install when a dependency has build scripts that are not explicitly allowed.
+strictDepBuilds: true
