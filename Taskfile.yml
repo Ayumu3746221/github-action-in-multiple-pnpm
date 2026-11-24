@@ -1,0 +1,64 @@
+# https://taskfile.dev
+#
+# The repository holds two independent pnpm projects:
+#   - root (.)  : repo-wide formatting with oxfmt
+#   - app (app/): TypeScript sources, oxlint and vitest
+# Each task installs only the project it needs (frozen lockfile) before running.
+version: "3"
+
+tasks:
+  default:
+    desc: List available tasks
+    silent: true
+    cmds:
+      - task --list
+
+  install:
+    desc: Install dependencies of all projects (frozen lockfile)
+    deps: [install:root, install:app]
+
+  install:root:
+    desc: Install root dependencies (frozen lockfile)
+    run: once
+    cmds:
+      - pnpm install --frozen-lockfile
+
+  install:app:
+    desc: Install app dependencies (frozen lockfile)
+    run: once
+    dir: app
+    cmds:
+      - pnpm install --frozen-lockfile
+
+  build:
+    desc: Type-check the app (tsc --noEmit)
+    deps: [install:app]
+    dir: app
+    cmds:
+      - pnpm build
+
+  format:
+    desc: Format the whole repository with oxfmt
+    deps: [install:root]
+    cmds:
+      - pnpm fmt
+
+  format:check:
+    desc: Check formatting of the whole repository with oxfmt
+    deps: [install:root]
+    cmds:
+      - pnpm fmt:check
+
+  lint:
+    desc: Lint the app with oxlint
+    deps: [install:app]
+    dir: app
+    cmds:
+      - pnpm lint
+
+  test:
+    desc: Run the app's tests with vitest
+    deps: [install:app]
+    dir: app
+    cmds:
+      - pnpm test
