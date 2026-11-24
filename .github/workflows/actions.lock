@@ -7,6 +7,10 @@ workflows:
         - 'actions/checkout@v7.0.1'
         - 'go-task/setup-task@a00fbb05ce67b35648be3c78cbc9fd85354c757e'
         - 'pnpm/setup@731dfb6463bbd11c11fd0ee11fe00ed0e36d48a1'
+    '.github/workflows/on-push-main.yml':
+        - 'actions/checkout@v7.0.1'
+        - 'go-task/setup-task@a00fbb05ce67b35648be3c78cbc9fd85354c757e'
+        - 'pnpm/setup@731dfb6463bbd11c11fd0ee11fe00ed0e36d48a1'
 dependencies:
     'actions/checkout@v7.0.1':
         ref: 'v7.0.1'
